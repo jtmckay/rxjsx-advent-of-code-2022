@@ -1,7 +1,7 @@
+import { Persistable, Persistence } from '@taterer/persist'
+import { indexedDBFactory } from '@taterer/persist-indexed-db'
 import { from } from 'rxjs'
 import { shareReplay, withLatestFrom } from 'rxjs/operators'
-import { indexedDBFactory } from '@taterer/persist-indexed-db'
-import { Persistable, Persistence } from '@taterer/persist'
 
 export enum IndexedDBEntity {
   todo = 'todo',
@@ -30,11 +30,11 @@ async function indexedDBPersistence(): Promise<
   }
 }
 
-export const indexedDB$ = from(indexedDBPersistence()).pipe(shareReplay(1))
+export const indexedDb$ = from(indexedDBPersistence()).pipe(shareReplay(1))
 
 export function withIndexedDB<Entity>() {
   return withLatestFrom<
     Entity,
     [Persistence<any & Persistable, IndexedDBEntity>]
-  >(indexedDB$)
+  >(indexedDb$)
 }

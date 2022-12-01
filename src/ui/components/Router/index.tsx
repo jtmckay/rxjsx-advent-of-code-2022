@@ -1,5 +1,5 @@
-import { map, takeUntil } from 'rxjs'
 import { firstPathChange$, subscribeToHistory } from '@taterer/rx-router'
+import { map, takeUntil } from 'rxjs'
 import { routeRegExpMap } from '../../../domain/router'
 import Home from '../../views/Home'
 import Memory from '../../views/Memory'
@@ -23,5 +23,10 @@ export default function Router({ destruction$ }) {
     takeUntil(destruction$)
   )
 
-  return <div single$={route$} />
+  return (
+    <div
+      style='width: 100%; max-width: 800px;'
+      single$={route$}
+    />
+  )
 }

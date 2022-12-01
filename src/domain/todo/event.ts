@@ -1,6 +1,6 @@
-import { v4 as uuid } from 'uuid'
 import { EntityEventHandlers, entityServiceFactory } from '@taterer/rx-entity'
-import { indexedDB$, IndexedDBEntity } from '../../persistence/indexed-db'
+import { v4 as uuid } from 'uuid'
+import { indexedDb$, IndexedDBEntity } from '../../persistence/indexed-db'
 import {
   CompleteTodo,
   NewTodo,
@@ -56,5 +56,5 @@ export const todoEventHandlers: EntityEventHandlers<Todo, TodoEvent> = {
 }
 
 export const todoEntity$ = todoCommands$.pipe(
-  entityServiceFactory(indexedDB$, IndexedDBEntity.todo, todoEventHandlers)
+  entityServiceFactory(indexedDb$, IndexedDBEntity.todo, todoEventHandlers)
 )

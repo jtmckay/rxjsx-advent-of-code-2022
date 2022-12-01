@@ -1,9 +1,10 @@
-import { from, shareReplay, withLatestFrom } from 'rxjs'
 import { Persistable, Persistence } from '@taterer/persist'
 import { memoryFactory } from '@taterer/persist-memory'
+import { from, shareReplay, withLatestFrom } from 'rxjs'
 
 export enum MemoryEntity {
   counter = 'counter',
+  advent = 'advent',
 }
 
 export async function memoryPersistence(): Promise<
@@ -12,6 +13,9 @@ export async function memoryPersistence(): Promise<
   const memoryDb = await memoryFactory([
     {
       name: MemoryEntity.counter,
+    },
+    {
+      name: MemoryEntity.advent,
     },
   ])
   return memoryDb
