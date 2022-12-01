@@ -4,10 +4,12 @@ import { indexedDBFactory } from '@taterer/persist-indexed-db'
 import { Persistable, Persistence } from '@taterer/persist'
 
 export enum IndexedDBEntity {
-  todo = 'todo'
+  todo = 'todo',
 }
 
-async function indexedDBPersistence (): Promise<Persistence<any & Persistable, IndexedDBEntity>> {
+async function indexedDBPersistence(): Promise<
+  Persistence<any & Persistable, IndexedDBEntity>
+> {
   const databaseName = 'db-create-rxjsx-app'
 
   try {
@@ -16,8 +18,8 @@ async function indexedDBPersistence (): Promise<Persistence<any & Persistable, I
       {
         name: IndexedDBEntity.todo,
         options: {
-          keyPath: 'id'
-        }
+          keyPath: 'id',
+        },
       },
     ])
 
@@ -30,6 +32,9 @@ async function indexedDBPersistence (): Promise<Persistence<any & Persistable, I
 
 export const indexedDB$ = from(indexedDBPersistence()).pipe(shareReplay(1))
 
-export function withIndexedDB<Entity> () {
-  return withLatestFrom<Entity, [Persistence<any & Persistable, IndexedDBEntity>]>(indexedDB$)
+export function withIndexedDB<Entity>() {
+  return withLatestFrom<
+    Entity,
+    [Persistence<any & Persistable, IndexedDBEntity>]
+  >(indexedDB$)
 }

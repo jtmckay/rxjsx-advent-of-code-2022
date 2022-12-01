@@ -5,12 +5,11 @@ import Home from '../../views/Home'
 import Memory from '../../views/Memory'
 import Todo from '../../views/Todo'
 
-export default function Router ({ destruction$ }) {
+export default function Router({ destruction$ }) {
   subscribeToHistory(destruction$)
 
-  const route$ = firstPathChange$
-  .pipe(
-    map(firstPath => {
+  const route$ = firstPathChange$.pipe(
+    map((firstPath) => {
       if (routeRegExpMap.home.test(firstPath)) {
         return <Home destruction$={firstPathChange$} />
       } else if (routeRegExpMap.memory.test(firstPath)) {
@@ -24,7 +23,5 @@ export default function Router ({ destruction$ }) {
     takeUntil(destruction$)
   )
 
-  return (
-    <div single$={route$} />
-  )
+  return <div single$={route$} />
 }
