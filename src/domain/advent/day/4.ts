@@ -1,14 +1,14 @@
 import { map, pipe } from 'rxjs'
 import { newAdvent, solveAdvent, solveAdventBonus } from '../command'
 
-export function day0() {
-  newAdvent({ id: '0', input })
+export function day4() {
+  newAdvent({ id: '4', input })
   solveAdvent({
-    id: '0',
+    id: '4',
     transform: pipe(map((i) => i.input + 1)),
   })
   solveAdventBonus({
-    id: '0',
+    id: '4',
     bonus: pipe(map((i) => 2)),
   })
 }
