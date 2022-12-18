@@ -40,11 +40,19 @@ export function day3() {
         (acc, current) => {
           const group = [...acc.elves, current]
           if (group.length === 3) {
-            return { count: 0, elves: [], elfGroups: [...acc.elfGroups, group] }
+            return {
+              count: 0,
+              elves: [] as string[],
+              elfGroups: [...acc.elfGroups, ...group],
+            }
           }
           return { count: 0, elves: group, elfGroups: acc.elfGroups }
         },
-        { count: 0, elves: [], elfGroups: [] }
+        { count: 0, elves: [], elfGroups: [] } as {
+          count: number
+          elves: string[]
+          elfGroups: string[]
+        }
       ),
       map((i) => {
         return i.elfGroups.map((group) => {
@@ -71,7 +79,7 @@ export function day3() {
           const group = [...seed, current]
           return { count: 0, elves: group }
         },
-        { count: 0, elves: [], elfGroups: [] }
+        { count: 0, elves: [] } as { count: number; elves: string[] }
       ),
       filter((i) => i.elves.length === 3),
       map((i) => {

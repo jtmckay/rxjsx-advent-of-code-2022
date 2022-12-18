@@ -8,7 +8,6 @@ export function sumReducer(acc, current) {
 function getDirSizes(root: any) {
   const directories: { name: string; size: number }[] = []
   fillDirSizes(root, directories)
-  console.log('directories', directories)
   return directories
 }
 
@@ -48,7 +47,6 @@ function mainReducer() {
                 accumulator.path.push(newPath)
               }
             } else {
-              console.log('current', current)
               throw new Error('No match')
             }
           } else if (/\$ ls/.test(current)) {
